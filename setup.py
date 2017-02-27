@@ -3,18 +3,20 @@ Created on 30 Jan 2017
 
 @author: pigna
 '''
-
 from setuptools import setup
 
-setup(name="systeminfo",
+setup(name="led_tester",
       version="0.1",
-      description="Basic system information for COMP30670",
+      description="Assignment 3, COMP30670. It tests LEDs on a square grid.",
       url="",
-      author="ME",
+      author="Andrea Pignanelli",
       author_email="andrea.pignanelli01@ucdconnect.ie",
       licence="GPL3",
       packages=['a3'],
       entry_points={
-          'console_scripts':['comp30670_systeminfo=a3.main:main']
-          }
+          'console_scripts':['solve_led=a3.main:main']
+          },
+      install_requires=[
+          'numpy',
+        ],
     )
