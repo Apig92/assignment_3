@@ -12,7 +12,7 @@ setup(name="led_tester",
       author="Andrea Pignanelli",
       author_email="andrea.pignanelli01@ucdconnect.ie",
       licence="GPL3",
-      packages=['assignment3'],
+      packages=['a3'],
       entry_points={
           'console_scripts':['solve_led=a3.main:main']
           },
