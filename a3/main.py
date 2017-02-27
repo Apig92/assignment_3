@@ -48,13 +48,15 @@ a=[[0]*n for _ in range(n)]
 print(a[2:5])
 
 
+'''
 class led_grid:
-    def turn_on(self):
+    def turn_on(self,i,j):
         pass
-    def turn_off(self):
+    def turn_off(self,i,j):
         pass
-    def switch(self):
+    def switch(self,i,j):
         pass
+'''
 
-    
-    
+if __name__ == '__main__':
+    pass
