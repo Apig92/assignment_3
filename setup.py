@@ -14,7 +14,7 @@ setup(name="led_tester",
       licence="GPL3",
       packages=['a3'],
       entry_points={
-          'console_scripts':['solve_led=a3.main:main']
+          'console_scripts':['solve_led=a3.main']
           },
       install_requires=[
           'numpy',
