@@ -4,13 +4,22 @@ Created on 27 Feb 2017
 @author: pigna
 '''
 import urllib.request
+import argparse
+
+def parse():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--input', help='input help')
+    args = parser.parse_args()
+    filename = args.input
+    return filename
 
 def read_url(url):
     uri= url
     req = urllib.request.urlopen(uri)
     buffer = req.read().decode('utf-8').split("\n")
     array_size = buffer[0]
-    return array_size
+    commands= buffer[1:]
+    return array_size,commands
 
 class led_grid:
     def  __init__(self,size):
@@ -47,7 +56,7 @@ class led_grid:
 def main():
     read_url("http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt")
     print(read_url("http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"))
-    c=led_grid(int(read_url("http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt")))
+    c=led_grid(int(read_url("http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt")[0]))
     c.turn_on(1,0,2,2)
     c.switch(0,0,5,2)
         
