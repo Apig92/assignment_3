@@ -12,9 +12,9 @@ setup(name="led_tester",
       author="Andrea Pignanelli",
       author_email="andrea.pignanelli01@ucdconnect.ie",
       licence="GPL3",
-      packages=['a3'],
+      packages=['assignment3'],
       entry_points={
-          'console_scripts':['solve_led=a3.main']
+          'console_scripts':['solve_led=a3.main:main']
           },
       install_requires=[
           'numpy',
