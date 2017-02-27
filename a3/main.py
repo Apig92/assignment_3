@@ -43,20 +43,50 @@ buffer = req.read().decode('utf-8')
 
 
 
-n=10
-a=[[0]*n for _ in range(n)]
-print(a[2:5])
 
 
-'''
 class led_grid:
-    def turn_on(self,i,j):
-        pass
-    def turn_off(self,i,j):
-        pass
-    def switch(self,i,j):
-        pass
-'''
+    def  __init__(self,size):
+        self.size= size
+        self.grid=[[False]*size for _ in range(0,size)]
+        print(self.grid)
+                
+    def turn_on(self):
+        
+        for i in range(self.size):
+            for j in range(self.size):
+                if self.grid[i][j]==False:
+                    self.grid[i][j]=True
+               
+        print(self.grid)  
+               
+    
+    def turn_off(self):
+        for i in range(self.size):
+            for j in range(self.size):
+                if self.grid[i][j]==True:
+                    self.grid[i][j]=False
+               
+        print(self.grid)  
+    
+    def switch(self):
+        for i in range(self.size):
+            for j in range(self.size):
+                if self.grid[i][j]==True:
+                    self.grid[i][j]=False
+                elif self.grid[i][j]==False:
+                    self.grid[i][j]=True
+               
+        print(self.grid)
+        
+        
 
 if __name__ == '__main__':
-    pass
+    
+    c=led_grid(3)
+    c.turn_on()
+    c.turn_off()
+    c.switch()
+    c.switch()
+    c.turn_off()
+    
