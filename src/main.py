@@ -7,12 +7,6 @@ Created on 27 Feb 2017
 import urllib.request
 import argparse
 
-def parse():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--input', help='input help')
-    args = parser.parse_args()
-    filename = args.input
-    return filename
 
 def read_url(url):
     uri= url
@@ -33,15 +27,16 @@ class led_grid:
             for j in range(x1,x2):
                 self.grid[i][j]=True
                
-            print(self.grid[0])  
+        return self.grid
+            
+              
                
     
     def turn_off(self,x1,y1,x2,y2):
         for i in range(y1,y2):
             for j in range(x1,x2):
                 self.grid[i][j]=False
-               
-                print(self.grid[0])    
+        return self.grid  
     
     def switch(self,x1,y1,x2,y2):
         for i in range(y1,y2):
@@ -50,15 +45,24 @@ class led_grid:
                     self.grid[i][j]=False
                 elif self.grid[i][j]==False:
                     self.grid[i][j]=True
+        
+        return self.grid
                
 
 
 
 def main():
-    filename=read_url(parse())[0]
-    c=led_grid(int(filename))
-    c.turn_on(1,0,999,2)
-    c.switch(0,0,5,3)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--input', help='input help')
+    args = parser.parse_args()
+    filename = args.input
+    gridsize=read_url(filename)[0]
+    print(gridsize)
+    c=led_grid(int(gridsize))
+    c.turn_on(1,0,4999,2)
+    print(c.grid[0])
+    print(c.grid[1])
+    #c.switch(0,0,5,3)
         
         
 

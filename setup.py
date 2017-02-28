@@ -6,7 +6,7 @@ Created on 30 Jan 2017
 from setuptools import setup
 
 setup(name="solveled",
-      version="0.1",
+      version="0.2",
       description="Assignment 3, COMP30670. It tests LEDs on a square grid.",
       url="",
       author="Andrea Pignanelli",
