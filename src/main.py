@@ -3,6 +3,7 @@ Created on 27 Feb 2017
 
 @author: pigna
 '''
+
 import urllib.request
 import argparse
 
@@ -32,7 +33,7 @@ class led_grid:
             for j in range(x1,x2):
                 self.grid[i][j]=True
                
-            print(self.grid[i])  
+            print(self.grid[0])  
                
     
     def turn_off(self,x1,y1,x2,y2):
@@ -54,11 +55,10 @@ class led_grid:
 
 
 def main():
-    read_url("http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt")
-    print(read_url("http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"))
-    c=led_grid(int(read_url("http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt")[0]))
-    c.turn_on(1,0,2,2)
-    c.switch(0,0,5,2)
+    filename=read_url(parse())[0]
+    c=led_grid(int(filename))
+    c.turn_on(1,0,999,2)
+    c.switch(0,0,5,3)
         
         
 
