@@ -1,0 +1,10 @@
+a3/__init__.py
+a3/main.py
+solveled.egg-info/PKG-INFO
+solveled.egg-info/SOURCES.txt
+solveled.egg-info/dependency_links.txt
+solveled.egg-info/entry_points.txt
+solveled.egg-info/requires.txt
+solveled.egg-info/top_level.txt
+src/__init__.py
+src/main.py

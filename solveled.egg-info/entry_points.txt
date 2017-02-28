@@ -1,0 +1,3 @@
+[console_scripts]
+solveled = src.main:main
+
