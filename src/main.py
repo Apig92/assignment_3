@@ -22,13 +22,6 @@ def read_url(url):
             instructions.append(parsed_content)
     return array_size,instructions
 
-def read_instructions(command):
-    pattern=re.compile("(turn on|turn off|switch)\s*(-{0,1}\d+),(-{0,1}\d+) through (-{0,1}\d+),(-{0,1}\d+)")
-    parsed_content=pattern.match(command).group()
-    instructions=[]
-    if parsed_content:
-        instructions.append(parsed_content)
-    return instructions
 
 class led_grid:
     def  __init__(self,size):
@@ -37,21 +30,21 @@ class led_grid:
                 
     def turn_on(self,x1,y1,x2,y2):
         
-        for i in range(y1,y2):
-            for j in range(x1,x2):
+        for i in range(y1,y2+1):
+            for j in range(x1,x2+1):
                 self.grid[i][j]=True
                
         return self.grid           
     
     def turn_off(self,x1,y1,x2,y2):
-        for i in range(y1,y2):
-            for j in range(x1,x2):
+        for i in range(y1,y2+1):
+            for j in range(x1,x2+1):
                 self.grid[i][j]=False
         return self.grid  
     
     def switch(self,x1,y1,x2,y2):
-        for i in range(y1,y2):
-            for j in range(x1,x2):
+        for i in range(y1,y2+1):
+            for j in range(x1,x2+1):
                 if self.grid[i][j]==True:
                     self.grid[i][j]=False
                 elif self.grid[i][j]==False:
@@ -91,8 +84,13 @@ def main():
        
     #for i in range(0,len(content)):
     #   print(content[i])
-    
-    print(c.grid[5])
+    LEDS=0
+    for i in range(0,int(gridsize)):
+            for j in range(0,int(gridsize)):
+                if c.grid[i][j]==True:
+                    LEDS+=1
+    print("The number of leds still on, is:",LEDS)
+            
     #print(c.grid[6])
     #c.switch(0,0,5,3)
         
