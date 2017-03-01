@@ -1,12 +1,12 @@
 '''
 Created on 27 Feb 2017
-
 @author: pigna
 '''
 import urllib.request
 import argparse
 import re
 import time
+import numpy as np
 start_time = time.time()
 
 def read_url():
@@ -29,28 +29,18 @@ def read_url():
 class led_grid:
     def  __init__(self,size):
         self.size= size
-        self.grid=[[False]*size for _ in range(0,size)]
+        self.grid=np.full((size,size),False,dtype=bool)
                 
     def turn_on(self,x1,y1,x2,y2):
-        
-        for i in range(y1,y2+1):
-            for j in range(x1,x2+1):
-                self.grid[i][j]=True       
+        self.grid[x1:x2 + 1, y1:y2 + 1] = True       
         return self.grid           
     
     def turn_off(self,x1,y1,x2,y2):
-        for i in range(y1,y2+1):
-            for j in range(x1,x2+1):
-                self.grid[i][j]=False        
+        self.grid[x1:x2 + 1, y1:y2 + 1] = False      
         return self.grid  
     
     def switch(self,x1,y1,x2,y2):
-        for i in range(y1,y2+1):
-            for j in range(x1,x2+1):
-                if self.grid[i][j]==True:
-                    self.grid[i][j]=False
-                elif self.grid[i][j]==False:
-                    self.grid[i][j]=True
+        self.grid[x1:x2 + 1, y1:y2 + 1] ^= True
         return self.grid
     
     def clean_up(self,x1,y1,x2,y2):
@@ -82,11 +72,7 @@ class led_grid:
         return self.grid
         
     def count_leds(self):
-        LEDS=0
-        for i in range(0,self.size):
-                for j in range(0,self.size):
-                    if self.grid[i][j]==True:
-                        LEDS+=1
+        LEDS=np.count_nonzero(self.grid)
         return LEDS
                
 def main():
@@ -96,7 +82,7 @@ def main():
         c=led_grid(gridsize)
         for i in range(len(content)):
             command,x1,y1,x2,y2=content[i][0],int(content[i][1]),int(content[i][2]),int(content[i][3]),int(content[i][4])  
-            c.execute_instructions(command,c.clean_up(x1, y1, x2, y2)[0],c.clean_up(x1, y1, x2, y2)[1],c.clean_up(x1, y1, x2, y2)[2],c.clean_up(x1, y1, x2, y2)[3])  
+            c.execute_instructions(command,c.clean_up(x1, y1, x2, y2)[0],c.clean_up(x1, y1, x2, y2)[1],c.clean_up(x1, y1, x2, y2)[2],c.clean_up(x1, y1, x2, y2)[3])
         print(urlname,c.count_leds(),"\nRuntime %s seconds" % (time.time() - start_time))
     else:
         print("Please enter a valid url(http:// included)")
